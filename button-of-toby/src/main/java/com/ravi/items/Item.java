@@ -31,6 +31,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return color + " " + shape + " (" + name + ")";
+        return name;
     }
 }

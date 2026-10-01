@@ -3,7 +3,6 @@ package com.ravi.puzzles;
 import java.util.List;
 import com.ravi.items.Item;
 import com.ravi.items.ItemColor;
-import com.ravi.items.ItemShape;
 
 public class Lock {
     private final int roomNumber;
@@ -34,23 +33,22 @@ public class Lock {
         }
 
         return switch (roomNumber) {
-            // Room 5: Requires 2 items matching in shape
-            case 5 -> items.size() >= 2 && items.get(0).getShape() == items.get(1).getShape();
+            // Room 5: Requires at least 2 red items
+            case 5 -> items.stream().filter(item -> item.getColor() == ItemColor.RED).count() >= 2;
 
-            // Room 8: Requires 2 items matching in color
-            case 8 -> items.size() >= 2 && items.get(0).getColor() == items.get(1).getColor();
+            // Room 8: Requires 3 distinct shapes
+            case 8 -> items.stream().map(Item::getShape).distinct().count() >= 3;
 
-            // Room 12: Requires 3 items of distinct shapes
-            case 12 -> items.size() >= 3
-                    && items.get(0).getShape() != items.get(1).getShape()
-                    && items.get(1).getShape() != items.get(2).getShape()
-                    && items.get(0).getShape() != items.get(2).getShape();
+            // Room 12: Requires 3 items of the same shape and different colours
+            case 12 -> items.subList(0, 3).stream().map(Item::getShape).distinct().count() == 1
+                && items.subList(0, 3).stream().map(Item::getColor).distinct().count() == 3;
 
-            // Room 18: Requires 3 Red items
-            case 18 -> items.stream().filter(i -> i.getColor() == ItemColor.RED).count() >= 3;
+            // Room 18: Requires all 4 colours
+            case 18 -> items.stream().map(Item::getColor).distinct().count() >= 4;
 
-            // Room 24: Requires 4 Star items
-            case 24 -> items.stream().filter(i -> i.getShape() == ItemShape.STAR).count() >= 4;
+            // Room 24: Requires 4 distinct shapes and colours
+            case 24 -> items.stream().map(Item::getShape).distinct().count() >= 4
+                && items.stream().map(Item::getColor).distinct().count() >= 4;
 
             default -> true;
         };

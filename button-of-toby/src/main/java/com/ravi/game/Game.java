@@ -7,6 +7,7 @@ import com.ravi.world.Facility;
 import com.ravi.world.Room;
 
 public class Game {
+    private static final int[] LOCK_ORDER = { 5, 8, 12, 18, 24 };
     private final Facility facility;
     private final Player player;
     private static final long SEED = 20260928L; // Playthrough seed for speedruns
@@ -17,7 +18,7 @@ public class Game {
 
         setupMajorLocks();
 
-        this.player = new Player(facility.getRoom(10)); // Starting bottom-left room position
+        this.player = new Player(facility.getRoom(11)); // Starting bottom room position
 
         // Populate items deterministically
         ItemSpawner.populateFacility(this, SEED);
@@ -37,6 +38,30 @@ public class Game {
             Lock lock = new Lock(roomId, clue, itemSlots);
             room.getPodium().setPuzzle(lock);
             room.setUnlocked(false);
+        }
+    }
+
+    public boolean canSolveLock(int roomId) {
+        for (int index = 0; index < LOCK_ORDER.length; index++) {
+            if (LOCK_ORDER[index] == roomId) {
+                if (index == 0) {
+                    return true;
+                }
+                Room previousLockRoom = facility.getRoom(LOCK_ORDER[index - 1]);
+                return previousLockRoom.getPodium().isSolved();
+            }
+        }
+        return true;
+    }
+
+    public void advanceLockProgression(int roomId) {
+        for (int index = 0; index < LOCK_ORDER.length; index++) {
+            if (LOCK_ORDER[index] == roomId) {
+                if (index + 1 < LOCK_ORDER.length) {
+                    facility.getRoom(LOCK_ORDER[index + 1]).setUnlocked(true);
+                }
+                return;
+            }
         }
     }
 

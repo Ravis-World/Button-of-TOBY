@@ -7,6 +7,7 @@ import com.ravi.world.Room;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 /**
@@ -27,20 +28,12 @@ public class ItemSpawner {
         for (ItemColor color : ItemColor.values()) {
             for (ItemShape shape : ItemShape.values()) {
                 String id = "ITEM_" + idCounter++;
-                String name = color.name() + " " + shape.name();
+                String name = displayName(color.name()) + " " + displayName(shape.name());
                 itemPool.add(new Item(id, name, color, shape));
             }
         }
 
         Collections.shuffle(itemPool, random);
-
-        // Give player 2 starting items in inventory for immediate puzzle interaction
-        if (!itemPool.isEmpty()) {
-            game.getPlayer().getInventory().addItem(itemPool.remove(0));
-        }
-        if (!itemPool.isEmpty()) {
-            game.getPlayer().getInventory().addItem(itemPool.remove(0));
-        }
 
         int[] accessibleRooms = { 10, 17, 7, 11, 16, 4, 2, 19, 1, 15, 13, 22, 14, 3, 21, 9, 6, 23 };
         int index = 0;
@@ -48,10 +41,15 @@ public class ItemSpawner {
         while (!itemPool.isEmpty()) {
             int roomId = accessibleRooms[index % accessibleRooms.length];
             Room room = facility.getRoom(roomId);
-            if (room != null && room.getPodium() != null) {
-                room.getPodium().placeItem(itemPool.remove(0));
+            if (room != null) {
+                room.addScatteredItem(itemPool.remove(0));
             }
             index++;
         }
+    }
+
+    private static String displayName(String value) {
+        String lowerCase = value.toLowerCase(Locale.ROOT);
+        return Character.toUpperCase(lowerCase.charAt(0)) + lowerCase.substring(1);
     }
 }

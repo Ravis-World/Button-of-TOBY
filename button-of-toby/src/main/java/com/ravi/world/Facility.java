@@ -53,30 +53,32 @@ public class Facility {
         link("east", 12, 23);
 
         // Vertical Connections between Rows:
-        // Row 1 to Row 2
-        link("north", 10, 8);
-        link("north", 17, 18);
-        link("north", 7, 2);
-        link("north", 11, 19);
-        link("north", 16, 1);
+        // Row 1 to Row 2, aligned by map column
+        link("north", 17, 8);
+        link("north", 7, 18);
+        link("north", 11, 2);
+        link("north", 16, 19);
+        link("north", 4, 1);
 
         // Row 2 to Row 3
-        link("north", 18, 20);
-        link("north", 2, 15);
-        link("north", 19, 13);
-        link("north", 1, 22);
+        link("north", 8, 20);
+        link("north", 18, 15);
+        link("north", 2, 13);
+        link("north", 19, 22);
+        link("north", 1, 14);
 
         // Row 3 to Row 4
-        link("north", 20, 3);
-        link("north", 15, 21);
-        link("north", 13, 9);
+        link("north", 15, 3);
+        link("north", 13, 21);
+        link("north", 22, 9);
 
         // Row 4 to Row 5
-        link("north", 3, 12);
-        link("north", 21, 23);
+        link("north", 3, 6);
+        link("north", 21, 12);
+        link("north", 9, 23);
 
         // Row 5 to Row 6 (Northernmost Room 24)
-        link("north", 23, 24);
+        link("north", 12, 24);
     }
 
     private void link(String direction, int fromId, int toId) {

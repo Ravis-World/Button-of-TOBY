@@ -1,0 +1,103 @@
+# ==============================================================================
+#           COMMONWEALTH OF AUSTRALIA — TOP SECRET FACILITY BLUEPRINT
+# ==============================================================================
+# PROJECT NAME: Tubular Oriented Blueprint (TOBY)
+# AUTHOR: Dr. Γ (Gamma) & Department of Emergency Yaml Operations
+# CLASSIFICATION: CLASS-7 TUBULAR / FOR SPEAKER'S EYES ONLY
+# REVISION: 2026.09.28-v2.4
+# ==============================================================================
+
+toby_metadata:
+  blueprint_name: "Tubular Oriented Blueprint"
+  acronym: "TOBY"
+  version: "2.4.0-RELEASE"
+  author: "Dr. Γ"
+  jurisdiction: "Commonwealth of Australia"
+  target_room: 24
+  reward_protocol: "PARLIAMENTARY_SPEAKER_ELECTION"
+
+facility_configuration:
+  total_rooms: 24
+  grid_layout:
+    rows: 6
+    columns: 7
+    matrix:
+      - [-1, -1, -1, 24, -1, -1, -1]
+      - [-1, -1, 6, 12, 23, -1, -1]
+      - [-1, -1,  3, 21,  9, -1, -1]
+      - [-1, 20, 15, 13, 22, 14, -1]
+      - [-1, 8, 18,  2, 19,  1, -1]
+      - [10, 17,  7, 11, 16,  4,  5]
+  spawn_point:
+    room_id: 11
+
+item_matrix_registry:
+  shapes:
+    - CIRCLE
+    - TRIANGLE
+    - SQUARE
+    - STAR
+    - HEXAGON
+  colours:
+    - RED
+    - BLUE
+    - GREEN
+    - YELLOW
+  total_pool_size: 20
+  speedrun_seed: 20260928
+
+security_gates:
+  gate_5:
+    room_id: 5
+    podium_slots: 2
+    rule_description: "Requires at least 2 RED items"
+    validation_logic:
+      min_red_items: 2
+
+  gate_8:
+    room_id: 8
+    podium_slots: 3
+    rule_description: "Requires 3 items of DISTINCT SHAPES"
+    validation_logic:
+      unique_shapes_required: 3
+
+  gate_12:
+    room_id: 12
+    podium_slots: 3
+    rule_description: "Requires 3 items of SAME SHAPE, DIFFERENT COLOURS"
+    validation_logic:
+      unique_shapes_allowed: 1
+      unique_colours_required: 3
+
+  gate_18:
+    room_id: 18
+    podium_slots: 4
+    rule_description: "Requires ALL 4 COLOURS (RED, BLUE, GREEN, YELLOW)"
+    validation_logic:
+      required_colours:
+        - RED
+        - BLUE
+        - GREEN
+        - YELLOW
+
+  gate_24:
+    room_id: 24
+    podium_slots: 4
+    rule_description: "Button of TOBY Security Gate — 4 DISTINCT SHAPES & 4 DISTINCT COLOURS"
+    validation_logic:
+      unique_shapes_required: 4
+      unique_colours_required: 4
+
+executive_protocol_clause:
+  trigger: "BUTTON_OF_TOBY_ACTIVATED"
+  consequences:
+    - action: "CEASE_FACILITY_LOCKDOWN"
+    - action: "GRANT_PARLIAMENTARY_IMMUNITY"
+    - action: "APPOINT_SPEAKER_OF_THE_HOUSE"
+      office: "House of Representatives, Canberra"
+      duty: "Maintain order during Question Time with absolute authority"
+      mace_authority: TRUE
+
+easter_eggs:
+  dev_note: "If you solved this without the constraint solver, order yourself a flat white."
+  speedrun_hash: "2026-TOBY-SOLVED-0928"

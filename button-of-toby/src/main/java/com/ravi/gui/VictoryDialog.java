@@ -45,10 +45,10 @@ public class VictoryDialog extends JDialog {
         messageArea.setText(
             "Congratulations Agent!\n\n" +
             "You have successfully navigated Dr. Γ's 24-room facility, bypassed all five security gates, " +
-            "and retrieved the sacred TOBY (Tubular Oriented Blueprint.yaml) for the Commonwealth.\n\n" +
+            "and retrieved the sacred TOBY (Tubular Oriented Blueprint.yaml) for the Australian Commonwealth.\n\n" +
             "In accordance with official Australian Government emergency protocol, your bravery has been rewarded:\n\n" +
-            "★ YOU HAVE BEEN APPOINTED SPEAKER OF THE HOUSE ★\n\n" +
-            "Please report to Parliament House immediately to maintain order during Question Time."
+            "★ YOU HAVE BEEN APPOINTED SPEAKER OF THE HOUSE OF REPRESENTATIVES ★\n\n" +
+            "Please report to Parliament House in Canberra immediately to maintain order during Question Time."
         );
 
         add(new JScrollPane(messageArea), BorderLayout.CENTER);
