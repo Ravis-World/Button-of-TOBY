@@ -8,6 +8,8 @@
 
 ---
 
+View the solution here (SPOILERS): [https://ravis-world.github.io/TOBY%20Solution/button_of_toby_interactive_tutorial_strategy_manager.html](https://ravis-world.github.io/TOBY%20Solution/button_of_toby_interactive_tutorial_strategy_manager.html)
+
 ## 📖 Story & Overview
 
 **Button of TOBY (Tubular Oriented Blueprint.yaml)** is a 24-room digital escape room and metroidvania set within a secret Australian Commonwealth facility created by the enigmatic **Dr. Γ**.
